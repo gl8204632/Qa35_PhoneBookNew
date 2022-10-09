@@ -1,50 +1,47 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTests extends TestBase {
+
+    @BeforeMethod
+    public void precondition(){
+        if (app.getHelperUser().isLogged ()){
+            app.getHelperUser().logout();
+
+        }
+    }
 
     @Test
     public void loginSuccess() {
 
         // open LoginForm
-        WebElement loginTab = wd.findElement(By.xpath("//a[@href='/login']"));
-        loginTab.click();
-        pause(3000);
+        app.getHelperUser().openLoginRegistrationForm();
 
         //fill email
-        WebElement InputEmail = wd.findElement(By.xpath("//input[@placeholder='Email']"));
-        InputEmail.click();
-        //clean element before  typing email
-        InputEmail.clear();
-        InputEmail.sendKeys("Mia@gmail.com");
-        pause(3000);
-
-        WebElement InputPassword = wd.findElement(By.xpath("//input[@placeholder='Password']"));
-        InputPassword.click();
-        InputPassword.clear();
-        InputPassword.sendKeys("Mia12345$");
-        pause(3000);
+        app.getHelperUser().fillLoginRegistrationForm("Mia@gmail.com","Mia12345$");
 
         //submit login
-        WebElement LoginButton = wd.findElement(By.xpath("//button[text()=' Login']"));
-        LoginButton.click();
-        pause(3000);
+        app.getHelperUser().submitLogin();
+
+
+
 
 
 
     }
 
-    @Test
-    public void loginNegativeWrongEmailFormat(){
-
-    }
 
 
-    @Test
-    public void loginNegativeWrongPasswordFormat(){
+    //@Test
+    //public void loginNegativeWrongEmailFormat(){
 
-    }
+    //}
+
+
+    //@Test
+    //public void loginNegativeWrongPasswordFormat(){
+
+    //}
 
 
 }

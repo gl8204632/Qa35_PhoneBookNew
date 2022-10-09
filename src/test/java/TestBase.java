@@ -1,36 +1,34 @@
+import manager.ApplicationManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import java.time.Duration;
+import java.util.List;
 
 public class TestBase {
-    WebDriver wd;
 
+    static ApplicationManager app = new ApplicationManager();
 
-    @BeforeTest
-    public void init(){
-        wd = new ChromeDriver();
-        wd.manage().window().maximize();
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wd.navigate().to("https://contacts-app.tobbymarshall815.vercel.app/");
+    @BeforeSuite
+    public void setUp(){
+        app.init();
+
     }
 
-    @AfterTest
+    @AfterSuite
     public void tearDown(){
-        wd.quit();
-    }
-
-    public void pause(int time){
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
+        app.stop();
 
     }
+
+
+
     }
 
 
