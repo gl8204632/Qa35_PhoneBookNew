@@ -32,17 +32,21 @@ public class HelperUser extends  HelperBase{
     }
 
     public void fillLoginRegistrationForm(String email, String password){
-        WebElement InputEmail = wd.findElement(By.xpath("//input[@placeholder='Email']"));
-        InputEmail.click();
-        //clean element before  typing email
-        InputEmail.clear();
-        InputEmail.sendKeys(email);
 
+        type(By.xpath("//input[@placeholder='Email']"),email);
+//
+//        WebElement InputEmail = wd.findElement(By.xpath("//input[@placeholder='Email']"));
+//        InputEmail.click();
+//        clean element before  typing email
+//        InputEmail.clear();
+//        InputEmail.sendKeys(email);
 
-        WebElement InputPassword = wd.findElement(By.xpath("//input[@placeholder='Password']"));
-        InputPassword.click();
-        InputPassword.clear();
-        InputPassword.sendKeys(password);
+        type(By.xpath("//input[@placeholder='Password']"),password);
+
+        //WebElement InputPassword = wd.findElement(By.xpath("//input[@placeholder='Password']"));
+        //InputPassword.click();
+        //InputPassword.clear();
+        //InputPassword.sendKeys(password);
     }
 
     public void submitLogin(){
