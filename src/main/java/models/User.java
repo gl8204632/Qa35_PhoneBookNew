@@ -8,7 +8,7 @@ public class User {
         return email;
     }
 
-    public User withEmail(String email) {
+    public User withEmail(String email) { //previous set email
         this.email = email;
         return this;//returns himself
         // or return new User();
@@ -20,10 +20,12 @@ public class User {
         return password;
     }
 
-    public User withPassword(String password) {
+    public User withPassword(String password) {//previous set password
         this.password = password;
         return this;
     }
+
+
 
     @Override
     public String toString() {

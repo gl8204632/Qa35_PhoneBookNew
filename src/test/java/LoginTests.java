@@ -12,11 +12,13 @@ public class LoginTests extends TestBase {
 
         }
     }
+
+    @Test
     public void loginSuccessModel() {
 
         //User user = new User();
         //user.setEmail("Mia@gmail.com");
-        //user.setPassword("Mia12345$");
+        //user.setPassword("Mia12345$");==>
 
         User user = new User().withEmail("Mia@gmail.com").withPassword("Mia12345$");//with==set
 
@@ -31,7 +33,8 @@ public class LoginTests extends TestBase {
         app.getHelperUser().submitLogin();
         app.getHelperUser().pause(2000);
 
-        //check is login done
+
+        //check is login done, appears button SignOut
         Assert.assertTrue(app.getHelperUser().isLogged());
 
     }
@@ -59,8 +62,17 @@ public class LoginTests extends TestBase {
 
 
 
-    //@Test
-    //public void loginNegativeWrongEmailFormat(){
+    @Test
+    public void loginNegativeWrongEmailFormat(){
+        app.getHelperUser().openLoginRegistrationForm();
+        app.getHelperUser().fillLoginRegistrationForm(new User().withEmail("Miagmail.com").withPassword("Mia12345$"));
+        app.getHelperUser().submitLogin();//test passed
+        Assert.assertFalse(app.getHelperUser().isLogged());
+        Assert.assertTrue(app.getHelperUser().isAllertPresent());
+        Assert.assertTrue(app.getHelperUser().isErrorWrongFormat());
+
+
+    }
 
     //}
 
